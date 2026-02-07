@@ -197,11 +197,6 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 Questions? Open an issue or contact [francisco.qui.martins@gmail.com]
 
-## 🙏 Acknowledgments
-
-Built with:
-- [RDKit](https://www.rdkit.org/) - Cheminformatics toolkit
-
 ---
 
 **Note**: This is an educational/research tool. Always validate computational results experimentally.
