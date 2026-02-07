@@ -1,0 +1,118 @@
+# ====================
+# Python
+# ====================
+__pycache__/                 # Compiled Python bytecode
+*.py[cod]                    # More Python compiled files
+*$py.class
+*.so                         # Shared object files
+.Python
+build/                       # Build artifacts
+develop-eggs/
+dist/                        # Distribution files
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/                  # Package metadata
+.installed.cfg
+*.egg
+MANIFEST
+
+# ====================
+# Virtual Environments
+# ====================
+venv/                        # Virtual environment folders
+ENV/
+env/
+.venv/
+
+# ====================
+# Jupyter Notebook
+# ====================
+.ipynb_checkpoints           # Notebook checkpoints
+*.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# ====================
+# IDEs
+# ====================
+.vscode/                     # VS Code settings
+.idea/                       # PyCharm settings
+*.swp                        # Vim swap files
+*.swo
+*.sublime-workspace          # Sublime Text
+*.sublime-project
+
+# ====================
+# Data Files (IMPORTANT!)
+# ====================
+*.sdf                        # Molecular structure files
+*.db                         # SQLite databases
+*.sqlite
+*.sqlite3
+data/                        # Data folder (if you have one)
+*.csv                        # CSV files (but allow sample data!)
+!sample_data/*.csv           # Exception: DO track sample data
+*.xlsx
+*.xls
+
+# ====================
+# Large files
+# ====================
+*.h5                         # HDF5 files
+*.pkl                        # Pickle files
+*.pickle
+*.zip
+*.tar.gz
+
+# ====================
+# OS Files
+# ====================
+.DS_Store                    # macOS
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db                  # Windows
+Thumbs.db
+Desktop.ini
+
+# ====================
+# Output/Results
+# ====================
+outputs/                     # Generated output files
+results/
+figures/
+plots/
+*.png                        # Images 
+*.jpg
+*.pdf
+!docs/images/*.png           # Exception: keep documentation images
+
+# ====================
+# Logs
+# ====================
+*.log
+logs/
+
+# ====================
+# Testing
+# ====================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ====================
+# Documentation build
+# ====================
+docs/_build/
+docs/_static/
+docs/_templates/

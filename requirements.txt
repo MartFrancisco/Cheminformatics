@@ -1,0 +1,17 @@
+# Core cheminformatics
+rdkit>=2023.3.1
+
+# Data manipulation
+pandas>=1.5.0
+numpy>=1.23.0
+
+# Scientific computing
+scipy>=1.9.0
+
+# Visualization
+matplotlib>=3.6.0
+mols2grid>=2.0.0
+
+# Optional: Jupyter for running notebooks
+jupyter>=1.0.0
+ipykernel>=6.0.0
