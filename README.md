@@ -201,7 +201,6 @@ Questions? Open an issue or contact [francisco.qui.martins@gmail.com]
 
 Built with:
 - [RDKit](https://www.rdkit.org/) - Cheminformatics toolkit
-- [mols2grid](https://github.com/cbouy/mols2grid) - Molecular visualization
 
 ---
 
