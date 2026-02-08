@@ -87,7 +87,7 @@ pip install -e .
 ### Step 3: Verify Installation
 ```bash
 # Test that the package was installed correctly
-python -c "from cheminformatics import curate_dataframe; print('✅ Installation successful!')"
+python -c "from chemspace import curate_dataframe; print('✅ Installation successful!')"
 ```
 
 ### Alternative: Install Dependencies Separately
