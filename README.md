@@ -214,9 +214,6 @@ cheminformatics/
 │   ├── enumeration.py              # Library enumeration
 │   └── filters.py                  # Drug-likeness filters
 │
-├── notebooks/
-│   └── example_workflow.ipynb      # Full workflow demonstration
-│
 └── sample_data/
     └── example_molecules.csv       # Small test dataset
 ```

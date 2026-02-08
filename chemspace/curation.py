@@ -271,6 +271,7 @@ def filter_single_functional_group(df, fg_type, column_name='SMILES'):
             return -1
     
     # Count and filter
+    df = df.copy()
     df['FG_Count'] = df[column_name].apply(count_fg)
     filtered_df = df[df['FG_Count'] == 1].copy()
     filtered_df.drop(columns=['FG_Count'], inplace=True)
