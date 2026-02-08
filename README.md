@@ -53,25 +53,68 @@ Raw Dataset (500k+ molecules)
 - Unwanted functional group removal
 - Conventional atom filtering (H, C, N, O, F, P, S, Cl, Br, I)
 
-# Install dependencies
+## 📦 Installation
+
+### Prerequisites
+
+- Python 3.8 or higher
+- pip package manager
+- Git (for cloning the repository)
+
+### Step 1: Clone the Repository
+```bash
+# Clone from GitHub
+git clone https://github.com/MartFrancisco/cheminformatics.git
+
+# Navigate into the project directory
+cd cheminformatics
+```
+
+### Step 2: Install the Package
+```bash
+# Install in editable mode (recommended for development)
+pip install -e .
+
+# This will automatically install all required dependencies:
+# - rdkit>=2023.3.1
+# - pandas>=1.5.0
+# - numpy>=1.23.0
+# - scipy>=1.9.0
+# - matplotlib>=3.6.0
+# - mols2grid>=2.0.0
+```
+
+### Step 3: Verify Installation
+```bash
+# Test that the package was installed correctly
+python -c "from cheminformatics import curate_dataframe; print('✅ Installation successful!')"
+```
+
+### Alternative: Install Dependencies Separately
+
+If you prefer to install dependencies first:
+```bash
+# Install dependencies from requirements.txt
 pip install -r requirements.txt
+
+# Then install the package
+pip install -e .
 ```
 
-### Requirements
-```
-rdkit>=2023.3.1
-pandas>=1.5.0
-numpy>=1.23.0
-scipy>=1.9.0
-matplotlib>=3.6.0
-mols2grid>=2.0.0
+### Optional Dependencies
+```bash
+# For development tools (testing, linting)
+pip install -e ".[dev]"
+
+# For running Jupyter notebooks
+pip install -e ".[notebooks]"
 ```
 
-## 🚀 Usage
+## 🚀 Quick Start
 
 ### Basic Example
 ```python
-from chemspace_functions import *
+from chemspace import *
 import pandas as pd
 
 # 1. Load your dataset
@@ -99,6 +142,8 @@ diverse_acids = maxmin_from_rdkit_fps(acids_fps, n_select=100, seed=42)
 diverse_amines = maxmin_from_rdkit_fps(amines_fps, n_select=100, seed=42)
 
 # 7. Enumerate amide library
+from rdkit.Chem import AllChem
+
 rxn_smarts = "[#7H1,#7H2:7].[#6:1](=[#8:3])[#8H1]>>[#7:7]-[#6:1](=[#8:3])"
 rxn_mol = AllChem.ReactionFromSmarts(rxn_smarts)
 
@@ -115,6 +160,23 @@ df_filtered = filter_by_atoms(df_filtered)
 df_filtered = filter_by_FGs(df_filtered)
 
 print(f"Final library size: {len(df_filtered)}")
+```
+
+### Using Sample Data
+
+The repository includes sample data for testing:
+```python
+from chemspace import *
+import pandas as pd
+
+# Load sample molecules
+df = pd.read_csv('sample_data/example_molecules.csv')
+print(f"Loaded {len(df)} sample molecules")
+
+# Run the pipeline
+df_curated = curate_dataframe(df)
+df_classified = FG_classifier(df_curated)
+# ... continue with your analysis
 ```
 
 ## 📊 Validation & Quality Metrics
@@ -134,16 +196,29 @@ pairwise_similarity_histogram(selected_df, sample_size=100)
 
 ## 📁 Project Structure
 ```
-chemspace-explorer/
+cheminformatics/
 ├── README.md
 ├── requirements.txt
-├── chemspace_functions.py      # All core functions
-├── example_notebook.ipynb      # Full workflow demonstration
-├── sample_data/
-│   └── example_molecules.csv   # Small test dataset
-└── docs/
-    ├── function_reference.md   # Detailed API documentation
-    └── tutorial.md             # Step-by-step guide
+├── setup.py
+├── pyproject.toml
+├── LICENSE
+├── .gitignore
+│
+├── cheminformatics/                # Core package (renamed from chemspace/)
+│   ├── __init__.py
+│   ├── curation.py                 # Dataset curation
+│   ├── fingerprints.py             # Fingerprint generation
+│   ├── clustering.py               # Butina clustering
+│   ├── diversity.py                # MaxMin selection
+│   ├── validation.py               # Quality metrics
+│   ├── enumeration.py              # Library enumeration
+│   └── filters.py                  # Drug-likeness filters
+│
+├── notebooks/
+│   └── example_workflow.ipynb      # Full workflow demonstration
+│
+└── sample_data/
+    └── example_molecules.csv       # Small test dataset
 ```
 
 ## 🔍 Function Reference
@@ -164,8 +239,6 @@ chemspace-explorer/
 | `filter_by_atoms()` | Keep only conventional atoms |
 | `filter_by_FGs()` | Remove unwanted functional groups |
 
-See [function_reference.md](docs/function_reference.md) for detailed documentation.
-
 ## 📖 Example Results
 
 From a 500k molecule database:
@@ -174,6 +247,43 @@ From a 500k molecule database:
 - **Amines**: 130k → 100 diverse representatives
 - **Virtual library**: 10,000 amides generated
 - **Drug-like library**: ~4,000 compounds (after filtering)
+
+## 🐛 Troubleshooting
+
+### RDKit Installation Issues
+
+If you encounter issues installing RDKit via pip, try using conda:
+```bash
+# Create a conda environment
+conda create -n cheminformatics python=3.10
+conda activate cheminformatics
+
+# Install RDKit via conda
+conda install -c conda-forge rdkit
+
+# Then install the package
+cd cheminformatics
+pip install -e .
+```
+
+### Import Errors
+
+If you get `ModuleNotFoundError: No module named 'cheminformatics'`:
+```bash
+# Make sure you're in the project directory
+cd /path/to/cheminformatics
+
+# Reinstall in editable mode
+pip install -e .
+```
+
+### Permission Errors
+
+If you get permission errors during installation:
+```bash
+# Install with user flag
+pip install -e . --user
+```
 
 ## ⚠️ Note on Data
 
@@ -196,6 +306,19 @@ MIT License - see [LICENSE](LICENSE) file for details
 ## 📧 Contact
 
 Questions? Open an issue or contact [francisco.qui.martins@gmail.com]
+
+## 🙏 Acknowledgments
+
+This project is built using the following open-source libraries:
+
+- [RDKit](https://www.rdkit.org/) - Cheminformatics and machine learning toolkit (BSD-3-Clause)
+- [Pandas](https://pandas.pydata.org/) - Data manipulation and analysis (BSD-3-Clause)
+- [NumPy](https://numpy.org/) - Numerical computing (BSD-3-Clause)
+- [SciPy](https://scipy.org/) - Scientific computing (BSD-3-Clause)
+- [Matplotlib](https://matplotlib.org/) - Plotting and visualization (PSF-based)
+- [mols2grid](https://github.com/cbouy/mols2grid) - Interactive molecular visualization (Apache-2.0)
+
+Special thanks to the open-source cheminformatics community!
 
 ---
 
