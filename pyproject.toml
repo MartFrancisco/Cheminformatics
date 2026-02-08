@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cheminformatics"
+version = "0.1.0"
+description = "Diverse amide library design pipeline for cheminformatics"
+authors = [
+    {name = "Francisco Martins", email = "francisco.qui.martins@gmail.com"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+dependencies = [
+    "rdkit>=2023.3.1",
+    "pandas>=1.5.0",
+    "numpy>=1.23.0",
+    "scipy>=1.9.0",
+    "matplotlib>=3.6.0",
+    "mols2grid>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "black", "flake8"]
+notebooks = ["jupyter>=1.0.0", "ipykernel>=6.0.0"]
+
+[project.urls]
+Homepage = "https://github.com/MartFrancisco/cheminformatics"
+Repository = "https://github.com/MartFrancisco/cheminformatics"
